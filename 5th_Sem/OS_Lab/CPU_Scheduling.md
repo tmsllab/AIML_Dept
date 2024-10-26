@@ -1,4 +1,14 @@
 
+Preemptive and non-preemptive CPU scheduling are two fundamental types of process scheduling.
+
+**Preemptive Scheduling:** This type of scheduling allows the operating system to interrupt or suspend a currently running process to start or resume another process. This ensures that higher-priority processes are executed first. Common algorithms include Round Robin and Priority Scheduling.
+
+**Non-Preemptive Scheduling:** Once a process starts running, it cannot be interrupted until it finishes. The scheduler must wait for the current process to complete before it can start the next one. FCFS and Shortest Job Next are examples of non-preemptive algorithms.
+
+Preemptive scheduling can lead to better performance but requires more overhead for context switching. Non-preemptive scheduling is simpler but can lead to inefficient CPU use.
+
+
+
 The CPU scheduling algorithm First Come, First Served (FCFS), also known as First In, First Out (FIFO), allocates the CPU to the processes in the order they are queued in the ready queue.
 
 FCFS uses non-preemptive scheduling, which means that once a CPU has been assigned to a process, it stays assigned to that process until it is either terminated or may be interrupted by an I/O interrupt.
