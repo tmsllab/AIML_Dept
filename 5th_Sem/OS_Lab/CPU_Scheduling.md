@@ -14,12 +14,63 @@ The CPU scheduling algorithm First Come, First Served (FCFS), also known as Firs
 FCFS uses non-preemptive scheduling, which means that once a CPU has been assigned to a process, it stays assigned to that process until it is either terminated or may be interrupted by an I/O interrupt.
 
 ```
-bhgjg
-jfghsjuhg sdhjgfas
-kjghjas
+/* FCFS Scheduling Program in C */
+#include <stdio.h>
+#define SIZE 10
+int main()
+{
+    int at[SIZE],bt[SIZE],bt_copy[SIZE];
+    int wt[SIZE],tat[SIZE],completion[SIZE];
+    int i,count,timecnt,n,beg=0;
+    float avg=0,totalt=0;
+ 
+    printf("Enter the number of Processes: ");
+    scanf("%d",&n);
+    count = n;
+    //Input details of processes
+    for(int i = 0; i < n; i++){
+        printf("Enter Details of Process %d \n", i + 1);
+        printf("Arrival Time: ");
+        scanf("%d", &at[i]);
+        printf("Burst Time: ");
+        scanf("%d", &bt[i]);
+        bt_copy[i] = bt[i];
+    }
+    
+    printf("\nGantt Chart\n");
+    printf("time start to end => process number\n");
+    for(timecnt=0, i = 0; count!=0; ){
+        // define the conditions
+        if(at[i]<=timecnt && bt_copy[i] > 0){
+            timecnt = timecnt + bt_copy[i];
+            bt_copy[i] = 0;
+            printf("%2d to %2d => p%d\n",beg,timecnt,i);
+            beg = timecnt;
 
-kghvajuhg sdhgvfsd
-sgfdj
+            count--; //decrement the process no.
+            completion[i] = timecnt+1;
+            tat[i] = completion[i] - at[i];
+            wt[i] = tat[i] - bt[i];
+            i=0;
+        }
+        else{
+            i++;
+        }
+    }
+    printf("pid     burst  arrival  waiting    completion  turnaround");
+    for(i=0;i<n;i++){
+        printf("\n P%d \t %2d \t %2d \t %2d \t\t %2d \t %2d",i,bt[i], at[i], wt[i],completion[i],tat[i]);
+        avg = avg + wt[i];
+        totalt = totalt + tat[i];
+    }
+    printf("\n\nTotal waiting time    = %f",avg);
+    printf("\nTotal Turnaround time = %f", totalt);
+    printf("\nAverage Waiting Time  = %f", avg/n);
+    printf("\nAvg Turnaround Time   = %f", totalt/n);
+    
+    return 0;
+}
+
 ```
 
 Shortest Remaining Time First Scheduling
