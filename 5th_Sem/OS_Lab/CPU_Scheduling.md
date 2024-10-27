@@ -135,8 +135,9 @@ int main()
     return 0;
 }
 ```
-![SJF Output](https://github.com/tmsllab/AIML_Dept/blob/main/5th_Sem/OS_Lab/img/SJF_output.jpg)
+OUTPUT :
 
+![SJF Output](https://github.com/tmsllab/AIML_Dept/blob/main/5th_Sem/OS_Lab/img/SJF_output.jpg)
 
 
 Priority (non-preemtive) CPU Scheduling Program in C
@@ -202,6 +203,11 @@ int main()
     return 0;
 }
 ```
+OUTPUT :
+
+![Priority non preemtive Output](https://github.com/tmsllab/AIML_Dept/blob/main/5th_Sem/OS_Lab/img/Priority_np_output.jpg)
+
+
 Priority (preemtive) CPU Scheduling Program in C
 ```
 /* Priority (preemtive) CPU Scheduling Program in C */
@@ -215,10 +221,11 @@ int main()
     int i,count=0,timecnt,n,beg=0,temp,smallest;
     float avg=0,totalt=0;
  
+    printf("lowest numerical value is given the highest priority");
     printf("Enter the number of Processes(Maximum %d): ", SIZE-2);
     scanf("%d",&n);
     //Input details of processes
-    for(int i = 0; i < n; i++){
+    for(i = 0; i < n; i++){
         printf("Enter Details of Process %d \n", i);
         printf("priority value(min 0): ");
         scanf("%d", &priority[i]);
@@ -230,7 +237,7 @@ int main()
     }
     priority[SIZE-1]=9999;
     temp = SIZE-1;
-    printf("\nGantt Chart\n");
+    printf("\nGantt Chart Priority (preemtive) Scheduling\n");
     printf("time start to end => process number\n");
     for(timecnt=0; count!=n; timecnt++){
         // define the conditions
@@ -253,21 +260,24 @@ int main()
             wt[smallest] = tat[smallest] - bt_copy[smallest];
         }
     }
-    printf("pid     burst  arrival  completion  turnaround  waiting");
+    printf("pid   arrival  priority  burst  completion  turnaround  waiting");
     for(i=0;i<n;i++){
-        printf("\n P%d \t %2d \t %2d \t   %2d \t\t %2d \t %2d",i,bt_copy[i], at[i],completion[i],tat[i], wt[i]);
+        printf("\n P%d %6d %9d %7d %9d %11d %10d",i, at[i], priority[i], bt_copy[i],completion[i],tat[i], wt[i]);
         avg = avg + wt[i];
         totalt = totalt + tat[i];
     }
-    printf("\n\nTotal waiting time    = %f",avg);
-    printf("\nTotal Turnaround time = %f", totalt);
-    printf("\nAverage Waiting Time  = %f", avg/n);
-    printf("\nAvg Turnaround Time   = %f", totalt/n);
+    printf("\n\nTotal waiting time    = %6.3f",avg);
+    printf("\nTotal Turnaround time = %6.3f", totalt);
+    printf("\nAverage Waiting Time  = %6.3f", avg/n);
+    printf("\nAvg Turnaround Time   = %6.3f", totalt/n);
     
     return 0;
 }
-
 ```
+OUTPUT :
+
+![Priority preemtive Output](https://github.com/tmsllab/AIML_Dept/blob/main/5th_Sem/OS_Lab/img/Priority_p_output.jpg)
+
 
 Round Robin Scheduling
 Round Robin Scheduling is a CPU scheduling algorithm in which each process is executed for
@@ -346,6 +356,11 @@ int main()
 }
 
 ```
+OUTPUT :
+
+![Round Robin Output](https://github.com/tmsllab/AIML_Dept/blob/main/5th_Sem/OS_Lab/img/round_robin_output.jpg)
+
+
 Shortest Remaining Time First Scheduling
 
 Shortest Remaining Time First (SRTF) algorithm always selects the process with the least amount of time remaining to execute. Here’s how it works:
@@ -417,3 +432,9 @@ int main(){
     return 0;
 }
 ```
+OUTPUT :
+
+![SRJF Output](https://github.com/tmsllab/AIML_Dept/blob/main/5th_Sem/OS_Lab/img/SRJF_output.jpg)
+
+
+**End**
