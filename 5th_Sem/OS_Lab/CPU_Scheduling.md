@@ -380,7 +380,7 @@ Shortest Remaining Time First (SRTF) algorithm always selects the process with t
 int main(){
     int at[SIZE],bt[SIZE],bt_copy[SIZE];
     int wt[SIZE],tat[SIZE],completion[SIZE];
-    int i,j,smallest,count=0,timecnt,n,beg,temp;
+    int i,smallest,count=0,timecnt,n,beg,temp;
     float avg=0,totalt=0,end;
  
     printf("Enter the number of Processes(Maximum %d): ", SIZE-2);
@@ -394,12 +394,12 @@ int main(){
     }
     bt[SIZE-1]=9999;
     temp = SIZE-1;
-    printf("\nGantt Chart\n");
+    printf("\nGantt Chart SRJF scheduling\n");
     printf("time start to end => process number\n");
     for(timecnt=0;count!=n;timecnt++){
         smallest=SIZE-1;
         for(i=0;i<n;i++){   
-            if(at[i]<=timecnt && bt[i]<bt[smallest] && bt[i]>0 )
+            if(at[i]<=timecnt && bt[i]>0 && bt[i]<bt[smallest])
                 smallest=i;
         }
         bt[smallest]--;
@@ -417,16 +417,16 @@ int main(){
             
         }
     }
-    printf("pid     burst  arrival  waiting    completion  turnaround");
+    printf("pid   arrival  burst  completion  turnaround  waiting");
     for(i=0;i<n;i++){
-        printf("\n P%d \t %2d \t %2d \t %2d \t\t %2d \t %2d",i,bt_copy[i], at[i], wt[i],completion[i],tat[i]);
+        printf("\n P%d %6d %7d %9d %11d %10d",i, at[i],bt_copy[i],completion[i],tat[i], wt[i]);
         avg = avg + wt[i];
         totalt = totalt + tat[i];
     }
-    printf("\n\n Total waiting time =  %f",avg);
-    printf("\n Total Turnaround time = %f", totalt);
-    printf("\n Average waiting time = %f",avg/n);
-    printf("\n Average Turnaround time = %f",totalt/n);
+    printf("\n\n Total waiting time =  %6.3f",avg);
+    printf("\n Total Turnaround time = %6.3f", totalt);
+    printf("\n Average waiting time = %6.3f",avg/n);
+    printf("\n Average Turnaround time = %6.3f",totalt/n);
     
     return 0;
 }
