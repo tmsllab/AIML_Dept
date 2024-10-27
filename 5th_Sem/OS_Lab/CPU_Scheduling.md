@@ -1,13 +1,13 @@
 
 # CPU Scheduling Algorithms
 
-*    First Come, First Served (FCFS)    [Go](#first-come-first-served-fcfs)
-*    Shortest Job First (SJF) Schedule    [Go](#shortest-job-first-sjf-schedule)
-*    Priority Scheduling    [Go](#priority-scheduling)
-*    *    Non-Preemptive Priority Scheduling    [Go](#priority-non-preemtive-cpu-scheduling)
-*    *    Preemptive Priority Scheduling    [Go](#priority-preemtive-cpu-scheduling)
-*    Round Robin Scheduling    [Go](#round-robin-scheduling)
-*    Shortest Remaining Job First Scheduling    [Go](#shortest-remaining-job-first-scheduling)
+*    First Come, First Served (FCFS) &emsp; [Go](#first-come-first-served-fcfs)
+*    Shortest Job First (SJF) Schedule &emsp; [Go](#shortest-job-first-sjf-schedule)
+*    Priority Scheduling &emsp; [Go](#priority-scheduling)
+*    *    Non-Preemptive Priority Scheduling &emsp; [Go](#priority-non-preemtive-cpu-scheduling)
+*    *    Preemptive Priority Scheduling &emsp; [Go](#priority-preemtive-cpu-scheduling)
+*    Round Robin Scheduling &emsp; [Go](#round-robin-scheduling)
+*    Shortest Remaining Job First Scheduling &emsp; [Go](#shortest-remaining-job-first-scheduling)
 
 
 **types of process scheduling:** Preemptive and non-preemptive CPU scheduling are two fundamental types of process scheduling.
@@ -19,7 +19,7 @@
 
 > Preemptive scheduling can lead to better performance but requires more overhead for context switching. Non-preemptive scheduling is simpler but can lead to inefficient CPU use. 
 
-## First Come, First Served (FCFS)
+## First Come, First Served (FCFS) 
 
 The CPU scheduling algorithm First Come, First Served (FCFS), also known as First In, First Out (FIFO), allocates the CPU to the processes in the order they are queued in the ready queue.
 
