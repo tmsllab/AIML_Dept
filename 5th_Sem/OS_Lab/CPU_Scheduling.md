@@ -1,14 +1,23 @@
 
 # CPU Scheduling Algorithms
-Preemptive and non-preemptive CPU scheduling are two fundamental types of process scheduling.
 
+*    First Come, First Served (FCFS)    [Go](#first-come-first-served-fcfs)
+*    Shortest Job First (SJF) Schedule    [Go](#shortest-job-first-sjf-schedule)
+*    Priority Scheduling    [Go](#priority-scheduling)
+*    *    Non-Preemptive Priority Scheduling    [Go](#priority-non-preemtive-cpu-scheduling)
+*    *    Preemptive Priority Scheduling    [Go](#priority-preemtive-cpu-scheduling)
+*    Round Robin Scheduling    [Go](#round-robin-scheduling)
+*    Shortest Remaining Job First Scheduling    [Go](#shortest-remaining-job-first-scheduling)
+
+
+**types of process scheduling:** Preemptive and non-preemptive CPU scheduling are two fundamental types of process scheduling.
 ### Preemptive Scheduling
 **Preemptive Scheduling:** This type of scheduling allows the operating system to interrupt or suspend a currently running process to start or resume another process. This ensures that higher-priority processes are executed first. Common algorithms include Round Robin and Priority Scheduling.
 
 ### Non-Preemptive Scheduling
 **Non-Preemptive Scheduling:** Once a process starts running, it cannot be interrupted until it finishes. The scheduler must wait for the current process to complete before it can start the next one. FCFS and Shortest Job Next are examples of non-preemptive algorithms.
 
-> Preemptive scheduling can lead to better performance but requires more overhead for context switching. Non-preemptive scheduling is simpler but can lead to inefficient CPU use.
+> Preemptive scheduling can lead to better performance but requires more overhead for context switching. Non-preemptive scheduling is simpler but can lead to inefficient CPU use. 
 
 ## First Come, First Served (FCFS)
 
@@ -382,11 +391,11 @@ OUTPUT :
 ![Round Robin Output](https://github.com/tmsllab/AIML_Dept/blob/main/5th_Sem/OS_Lab/img/round_robin_output.jpg)
 
 
-## Shortest Remaining Time First Scheduling
+## Shortest Remaining Job First Scheduling
 
-Shortest Remaining Time First (SRTF) algorithm always selects the process with the least amount of time remaining to execute. Here’s how it works:
+Shortest Remaining Job First (SRJF) algorithm always selects the process with the least amount of time remaining to execute. Here’s how it works:
 
-1.	Preemptive Nature: Unlike some other algorithms, SRTF can preempt the currently running process if a new process arrives with a shorter remaining time.
+1.	Preemptive Nature: Unlike some other algorithms, SRJF can preempt the currently running process if a new process arrives with a shorter remaining time.
 
 2.	Dynamic: It constantly re-evaluates the remaining time of processes as new ones arrive and as they are executed.
 
