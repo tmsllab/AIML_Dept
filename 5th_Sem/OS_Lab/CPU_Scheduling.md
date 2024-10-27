@@ -207,6 +207,72 @@ int main(){
 }
 ```
 
+```
+/* Priority (non-preemtive) CPU Scheduling Program in C */
+#include <stdio.h>
+#define SIZE 10
+
+int main()
+{
+    int at[SIZE],bt[SIZE],bt_copy[SIZE],priority[SIZE];
+    int wt[SIZE],tat[SIZE],completion[SIZE];
+    int i,count,timecnt,n,beg=0,temp,smallest;
+    float avg=0,totalt=0;
+ 
+    printf("Enter the number of Processes(Maximum %d): ", SIZE-2);
+    scanf("%d",&n);
+    count = n;
+    //Input details of processes
+    for(int i = 0; i < n; i++){
+        printf("Enter Details of Process %d \n", i);
+        printf("priority value(min 0): ");
+        scanf("%d", &priority[i]);
+        printf("Arrival Time: ");
+        scanf("%d", &at[i]);
+        printf("Burst Time: ");
+        scanf("%d", &bt[i]);
+        bt_copy[i] = bt[i];
+    }
+    priority[SIZE-1]=9999;
+    temp = SIZE-1;
+    printf("\nGantt Chart\n");
+    printf("time start to end => process number\n");
+    for(timecnt=0, i = 0; count!=0; ){
+        // define the conditions
+        smallest=SIZE-1;
+        for(i=0; i<n; i++){
+            if(at[i]<=timecnt && bt[i]>0 && priority[i]<priority[smallest]){
+                smallest=i;
+            }
+        }
+        timecnt = timecnt + bt[smallest];
+        bt[smallest] = 0;
+        printf("%2d to %2d => p%d\n",beg,timecnt,smallest);
+        beg = timecnt;
+
+        count--; //decrement the process no.
+        completion[smallest] = timecnt;
+        tat[smallest] = completion[smallest] - at[smallest];
+        wt[smallest] = tat[smallest] - bt_copy[smallest];
+    }
+    printf("pid     burst  arrival  completion  turnaround  waiting");
+    for(i=0;i<n;i++){
+        printf("\n P%d \t %2d \t %2d \t   %2d \t\t %2d \t %2d",i,bt_copy[i], at[i],completion[i],tat[i], wt[i]);
+        avg = avg + wt[i];
+        totalt = totalt + tat[i];
+    }
+    printf("\n\nTotal waiting time    = %f",avg);
+    printf("\nTotal Turnaround time = %f", totalt);
+    printf("\nAverage Waiting Time  = %f", avg/n);
+    printf("\nAvg Turnaround Time   = %f", totalt/n);
+    
+    return 0;
+}
+
+
+```
+
+
 Round Robin Scheduling
 Round Robin Scheduling is a CPU scheduling algorithm in which each process is executed for
 a fixed time slot. Since the resources are snatched after the time slot, round robin is
