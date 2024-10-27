@@ -77,14 +77,15 @@ OUTPUT :
 
 SJF Schedule
 ```
-/* SJF Scheduling Program in C */
+/* SJF CPU Scheduling Program in C */
 #include <stdio.h>
 #define SIZE 10
+
 int main()
 {
     int at[SIZE],bt[SIZE],bt_copy[SIZE];
     int wt[SIZE],tat[SIZE],completion[SIZE];
-    int i,count,timecnt,n,beg=0,temp,smallest;
+    int i,count,timecnt,n,beg=0,smallest;
     float avg=0,totalt=0;
  
     printf("Enter the number of Processes: ");
@@ -92,16 +93,15 @@ int main()
     count = n;
     //Input details of processes
     for(int i = 0; i < n; i++){
-        printf("Enter Details of Process %d \n", i + 1);
+        printf("Enter Details of Process %d \n", i);
         printf("Arrival Time: ");
         scanf("%d", &at[i]);
-        printf("Burst Time: ");
+        printf("Burst Time  : ");
         scanf("%d", &bt[i]);
         bt_copy[i] = bt[i];
     }
     bt[SIZE-1]=9999;
-    temp = SIZE-1;
-    printf("\nGantt Chart\n");
+    printf("\nGantt Chart SJF Scheduling\n");
     printf("time start to end => process number\n");
     for(timecnt=0, i = 0; count!=0; ){
         // define the conditions
@@ -121,9 +121,9 @@ int main()
         tat[smallest] = completion[smallest] - at[smallest];
         wt[smallest] = tat[smallest] - bt_copy[smallest];
     }
-    printf("pid     burst  arrival  completion  turnaround  waiting");
+    printf("pid   arrival  burst  completion  turnaround  waiting");
     for(i=0;i<n;i++){
-        printf("\n P%d \t %2d \t %2d \t   %2d \t\t %2d \t %2d",i,bt_copy[i], at[i],completion[i],tat[i], wt[i]);
+        printf("\n P%d %6d %7d %9d %11d %9d",i, at[i],bt_copy[i],completion[i],tat[i], wt[i]);
         avg = avg + wt[i];
         totalt = totalt + tat[i];
     }
@@ -134,8 +134,8 @@ int main()
     
     return 0;
 }
-
 ```
+![SJF Output](https://github.com/tmsllab/AIML_Dept/blob/main/5th_Sem/OS_Lab/img/SJF_output.jpg)
 
 
 Shortest Remaining Time First Scheduling
