@@ -179,7 +179,7 @@ int main()
     int i,count,timecnt,n,beg=0,smallest;
     float avg=0,totalt=0;
     
-    printf("lowest numerical value is given the highest priority");
+    printf("lowest numerical value is given the highest priority\n");
     printf("Enter the number of Processes(Maximum %d): ", SIZE-2);
     scanf("%d",&n);
     count = n;
@@ -248,7 +248,7 @@ int main()
     int i,count=0,timecnt,n,beg=0,temp,smallest;
     float avg=0,totalt=0;
  
-    printf("lowest numerical value is given the highest priority");
+    printf("lowest numerical value is given the highest priority\n");
     printf("Enter the number of Processes(Maximum %d): ", SIZE-2);
     scanf("%d",&n);
     //Input details of processes
