@@ -32,12 +32,12 @@ int main()
         printf("Enter Details of Process %d \n", i);
         printf("Arrival Time: ");
         scanf("%d", &at[i]);
-        printf("Burst Time: ");
+        printf("Burst Time  : ");
         scanf("%d", &bt[i]);
         bt_copy[i] = bt[i];
     }
     
-    printf("\nGantt Chart\n");
+    printf("\nGantt Chart FCFS Scheduling\n");
     printf("time start to end => process number\n");
     for(timecnt=0, i = 0; count!=n; ){
         // define the conditions
@@ -59,7 +59,7 @@ int main()
     }
     printf("pid     burst  arrival  completion  turnaround  waiting");
     for(i=0;i<n;i++){
-        printf("\n P%d \t %2d \t %2d \t   %2d\t\t %2d \t  %2d",i,bt_copy[i], at[i], wt[i],completion[i],tat[i]);
+        printf("\n P%d \t %2d \t %2d \t   %2d\t\t %2d \t  %2d",i,bt_copy[i], at[i],completion[i],tat[i], wt[i]);
         avg = avg + wt[i];
         totalt = totalt + tat[i];
     }
@@ -70,8 +70,11 @@ int main()
     
     return 0;
 }
-
 ```
+OUTPUT :
+
+![FCFS Output](https://github.com/tmsllab/AIML_Dept/blob/main/5th_Sem/OS_Lab/img/FCFS_output.jpg)
+
 SJF Schedule
 ```
 /* SJF Scheduling Program in C */
