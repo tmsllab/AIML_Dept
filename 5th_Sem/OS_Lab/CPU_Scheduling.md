@@ -74,8 +74,9 @@ int main(){
             count++;
             end=timecnt+1;
             completion[smallest] = end;
-            wt[smallest] = end - at[smallest] - bt_copy[smallest];
-            tat[smallest] = end - at[smallest];
+            tat[smallest] = completion[smallest] - at[smallest];
+            wt[smallest] = tat[smallest] - bt_copy[smallest];
+            
         }
     }
     printf("pid     burst  arrival  waiting    completion  turnaround");
