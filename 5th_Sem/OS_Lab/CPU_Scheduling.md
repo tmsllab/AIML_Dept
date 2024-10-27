@@ -1,13 +1,16 @@
 
+# CPU Scheduling Algorithms
 Preemptive and non-preemptive CPU scheduling are two fundamental types of process scheduling.
 
+### Preemptive Scheduling
 **Preemptive Scheduling:** This type of scheduling allows the operating system to interrupt or suspend a currently running process to start or resume another process. This ensures that higher-priority processes are executed first. Common algorithms include Round Robin and Priority Scheduling.
 
+### Non-Preemptive Scheduling
 **Non-Preemptive Scheduling:** Once a process starts running, it cannot be interrupted until it finishes. The scheduler must wait for the current process to complete before it can start the next one. FCFS and Shortest Job Next are examples of non-preemptive algorithms.
 
-Preemptive scheduling can lead to better performance but requires more overhead for context switching. Non-preemptive scheduling is simpler but can lead to inefficient CPU use.
+> Preemptive scheduling can lead to better performance but requires more overhead for context switching. Non-preemptive scheduling is simpler but can lead to inefficient CPU use.
 
-
+## First Come, First Served (FCFS)
 
 The CPU scheduling algorithm First Come, First Served (FCFS), also known as First In, First Out (FIFO), allocates the CPU to the processes in the order they are queued in the ready queue.
 
@@ -75,7 +78,10 @@ OUTPUT :
 
 ![FCFS Output](https://github.com/tmsllab/AIML_Dept/blob/main/5th_Sem/OS_Lab/img/FCFS_output.jpg)
 
-SJF Schedule
+## Shortest Job First (SJF) Schedule
+
+Shortest Job First (SJF) scheduling is a method where the process with the smallest execution time is selected next for execution. It's non-preemptive, meaning once a process starts, it runs to completion before another process is selected.
+
 ```
 /* SJF CPU Scheduling Program in C */
 #include <stdio.h>
@@ -138,8 +144,20 @@ OUTPUT :
 
 ![SJF Output](https://github.com/tmsllab/AIML_Dept/blob/main/5th_Sem/OS_Lab/img/SJF_output.jpg)
 
+## Priority Scheduling
 
-Priority (non-preemtive) CPU Scheduling Program in C
+Priority scheduling assigns the CPU to processes based on priority. Higher-priority processes get the CPU first, regardless of their arrival time. There are two types:
+
+### Preemptive Priority Scheduling
+If a higher-priority process arrives, it interrupts the current process. For example, a real-time system where urgent tasks take precedence.
+
+### Non-Preemptive Priority Scheduling 
+The CPU waits for the current process to finish, even if a higher-priority process arrives. Think of it like a polite queue where even urgent tasks must wait their turn.
+
+> Balancing this can be tricky because lower-priority processes might get starved, so some systems use "aging" to gradually increase the priority of waiting processes.
+
+## Priority (non-preemtive) CPU Scheduling
+
 ```
 /* Priority (non-preemtive) CPU Scheduling Program in C */
 #include <stdio.h>
@@ -207,7 +225,8 @@ OUTPUT :
 ![Priority non preemtive Output](https://github.com/tmsllab/AIML_Dept/blob/main/5th_Sem/OS_Lab/img/Priority_np_output.jpg)
 
 
-Priority (preemtive) CPU Scheduling Program in C
+## Priority (preemtive) CPU Scheduling
+
 ```
 /* Priority (preemtive) CPU Scheduling Program in C */
 #include <stdio.h>
@@ -278,13 +297,17 @@ OUTPUT :
 ![Priority preemtive Output](https://github.com/tmsllab/AIML_Dept/blob/main/5th_Sem/OS_Lab/img/Priority_p_output.jpg)
 
 
-Round Robin Scheduling
-Round Robin Scheduling is a CPU scheduling algorithm in which each process is executed for
-a fixed time slot. Since the resources are snatched after the time slot, round robin is
-preemptive.
+## Round Robin Scheduling
+
+Round Robin Scheduling is a CPU scheduling algorithm in which each process is executed for a fixed time slot. Since the resources are snatched after the time slot, round robin is preemptive.
+
+It’s particularly effective in time-sharing systems where responsiveness is key. 
+The main challenge is setting the optimal time slice
+*    too small, and you get too many context switches; 
+*    too large, and it acts like FCFS.
 
 ```
-/* Round Robin Scheduling Program in C */
+/* Round Robin CPU Scheduling Program in C */
 #include <stdio.h>
 #define SIZE 10
 
@@ -298,7 +321,7 @@ int main()
     printf("Enter the number of Processes(Maximum %d): ", SIZE-2);
     scanf("%d",&n);
     //Input details of processes
-    for(int i = 0; i < n; i++){
+    for(i = 0; i < n; i++){
         printf("Enter Details of Process %d \n", i);
         printf("Arrival Time: ");
         scanf("%d", &at[i]);
@@ -359,7 +382,7 @@ OUTPUT :
 ![Round Robin Output](https://github.com/tmsllab/AIML_Dept/blob/main/5th_Sem/OS_Lab/img/round_robin_output.jpg)
 
 
-Shortest Remaining Time First Scheduling
+## Shortest Remaining Time First Scheduling
 
 Shortest Remaining Time First (SRTF) algorithm always selects the process with the least amount of time remaining to execute. Here’s how it works:
 
@@ -372,7 +395,7 @@ Shortest Remaining Time First (SRTF) algorithm always selects the process with t
 
 ```
 
-// C Program to implement SRJF CPU scheduling alforithm
+/* SRJF CPU Scheduling Program in C */
 #include<stdio.h>
 #define SIZE 10
 
@@ -384,12 +407,13 @@ int main(){
  
     printf("Enter the number of Processes(Maximum %d): ", SIZE-2);
     scanf("%d",&n);
-    for(i=0;i<n;i++){
-        printf("Enter arrival time of process %d : ",i);
-        scanf("%d",&at[i]);
-        printf("Enter burst time of process %d : ",i);
-        scanf("%d",&bt[i]);
-        bt_copy[i]=bt[i];
+    for(i = 0; i < n; i++){
+        printf("Enter Details of Process %d \n", i);
+        printf("Arrival Time: ");
+        scanf("%d", &at[i]);
+        printf("Burst Time  : ");
+        scanf("%d", &bt[i]);
+        bt_copy[i] = bt[i];
     }
     bt[SIZE-1]=9999;
     temp = SIZE-1;
@@ -422,10 +446,10 @@ int main(){
         avg = avg + wt[i];
         totalt = totalt + tat[i];
     }
-    printf("\n\n Total waiting time =  %6.3f",avg);
-    printf("\n Total Turnaround time = %6.3f", totalt);
-    printf("\n Average waiting time = %6.3f",avg/n);
-    printf("\n Average Turnaround time = %6.3f",totalt/n);
+    printf("\n\nTotal waiting time      = %6.3f",avg);
+    printf("\nTotal Turnaround time   = %6.3f", totalt);
+    printf("\nAverage waiting time    = %6.3f",avg/n);
+    printf("\nAverage Turnaround time = %6.3f",totalt/n);
     
     return 0;
 }
