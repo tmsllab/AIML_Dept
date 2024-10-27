@@ -59,7 +59,7 @@ int main()
     }
     printf("pid   arrival  burst  completion  turnaround  waiting");
     for(i=0;i<n;i++){
-        printf("\n P%d %6d %7d %9d %11d %9d",i, at[i],bt_copy[i],completion[i],tat[i], wt[i]);
+        printf("\n P%d %6d %7d %9d %11d %10d",i, at[i],bt_copy[i],completion[i],tat[i], wt[i]);
         avg = avg + wt[i];
         totalt = totalt + tat[i];
     }
@@ -123,7 +123,7 @@ int main()
     }
     printf("pid   arrival  burst  completion  turnaround  waiting");
     for(i=0;i<n;i++){
-        printf("\n P%d %6d %7d %9d %11d %9d",i, at[i],bt_copy[i],completion[i],tat[i], wt[i]);
+        printf("\n P%d %6d %7d %9d %11d %10d",i, at[i],bt_copy[i],completion[i],tat[i], wt[i]);
         avg = avg + wt[i];
         totalt = totalt + tat[i];
     }
