@@ -85,12 +85,11 @@ int main()
 {
     int at[SIZE],bt[SIZE],bt_copy[SIZE];
     int wt[SIZE],tat[SIZE],completion[SIZE];
-    int i,count,timecnt,n,beg=0,smallest;
+    int i,count=0,timecnt,n,beg=0,smallest;
     float avg=0,totalt=0;
  
     printf("Enter the number of Processes(Maximum %d): ", SIZE-2);
     scanf("%d",&n);
-    count = n;
     //Input details of processes
     for(i = 0; i < n; i++){
         printf("Enter Details of Process %d \n", i);
@@ -103,7 +102,7 @@ int main()
     bt[SIZE-1]=9999;
     printf("\nGantt Chart SJF Scheduling\n");
     printf("time start to end => process number\n");
-    for(timecnt=0, i = 0; count!=0; ){
+    for(timecnt=0, i = 0; count!=n; ){
         // define the conditions
         smallest=SIZE-1;
         for(i=0; i<n; i++){
@@ -116,7 +115,7 @@ int main()
         printf("%2d to %2d => p%d\n",beg,timecnt,smallest);
         beg = timecnt;
 
-        count--; //decrement the process no.
+        count++; //decrement the process no.
         completion[smallest] = timecnt;
         tat[smallest] = completion[smallest] - at[smallest];
         wt[smallest] = tat[smallest] - bt_copy[smallest];
