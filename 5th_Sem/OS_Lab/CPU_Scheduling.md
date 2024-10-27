@@ -88,7 +88,7 @@ int main()
     int i,count,timecnt,n,beg=0,smallest;
     float avg=0,totalt=0;
  
-    printf("Enter the number of Processes: ");
+    printf("Enter the number of Processes(Maximum %d): ", SIZE-2);
     scanf("%d",&n);
     count = n;
     //Input details of processes
@@ -164,7 +164,7 @@ int main()
         scanf("%d", &priority[i]);
         printf("Arrival Time: ");
         scanf("%d", &at[i]);
-        printf("Burst Time: ");
+        printf("Burst Time  : ");
         scanf("%d", &bt[i]);
         bt_copy[i] = bt[i];
     }
@@ -231,7 +231,7 @@ int main()
         scanf("%d", &priority[i]);
         printf("Arrival Time: ");
         scanf("%d", &at[i]);
-        printf("Burst Time: ");
+        printf("Burst Time  : ");
         scanf("%d", &bt[i]);
         bt_copy[i] = bt[i];
     }
