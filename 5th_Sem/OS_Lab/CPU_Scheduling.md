@@ -93,3 +93,81 @@ int main(){
     return 0;
 }
 ```
+
+Round Robin Scheduling
+Round Robin Scheduling is a CPU scheduling algorithm in which each process is executed for
+a fixed time slot. Since the resources are snatched after the time slot, round robin is
+preemptive.
+
+```
+/* Round Robin Scheduling Program in C */
+#include <stdio.h>
+#define SIZE 10
+int main()
+{
+    int at[SIZE],bt[SIZE],bt_copy[SIZE];
+    int wt[SIZE],tat[SIZE],completion[SIZE];
+    int i,count,timecnt,n,beg=0,time_slot, flag = 0;
+    float avg=0,totalt=0;
+ 
+    printf("Enter the number of Processes: ");
+    scanf("%d",&n);
+    count = n;
+    //Input details of processes
+    for(int i = 0; i < n; i++){
+        printf("Enter Details of Process %d \n", i + 1);
+        printf("Arrival Time: ");
+        scanf("%d", &at[i]);
+        printf("Burst Time: ");
+        scanf("%d", &bt[i]);
+        bt_copy[i] = bt[i];
+    }
+    //Input time slot
+    printf("Enter Time Slot:");
+    scanf("%d", &time_slot);
+    printf("\nGantt Chart\n");
+    printf("time start to end => process number\n");
+    for(timecnt=0, i = 0; count!=0; ){
+        // define the conditions
+        if(at[i]<=timecnt && bt_copy[i] > 0){
+            if(bt_copy[i] <= time_slot){
+                timecnt = timecnt + bt_copy[i];
+                bt_copy[i] = 0;
+                flag=1;
+            }
+            else{
+                bt_copy[i] = bt_copy[i] - time_slot;
+                timecnt = timecnt + time_slot;
+            }
+            printf("%2d to %2d => p%d\n",beg,timecnt,i);
+            beg = timecnt;
+        }
+        if(bt_copy[i]==0 && flag==1){
+            count--; //decrement the process no.
+            completion[i] = timecnt+1;
+            tat[i] = completion[i] - at[i];
+            wt[i] = tat[i] - bt[i];
+            flag =0;
+        }
+        if(i == n-1){
+            i = 0;
+        }
+        else{
+            i = i+1;
+        }
+    }
+    printf("pid     burst  arrival  waiting    completion  turnaround");
+    for(i=0;i<n;i++){
+        printf("\n P%d \t %2d \t %2d \t %2d \t\t %2d \t %2d",i,bt[i], at[i], wt[i],completion[i],tat[i]);
+        avg = avg + wt[i];
+        totalt = totalt + tat[i];
+    }
+    printf("\n\nTotal waiting time    = %f",avg);
+    printf("\nTotal Turnaround time = %f", totalt);
+    printf("\nAverage Waiting Time  = %f", avg/n);
+    printf("\nAvg Turnaround Time   = %f", totalt/n);
+    
+    return 0;
+}
+
+```
