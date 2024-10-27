@@ -14,22 +14,22 @@ The CPU scheduling algorithm First Come, First Served (FCFS), also known as Firs
 FCFS uses non-preemptive scheduling, which means that once a CPU has been assigned to a process, it stays assigned to that process until it is either terminated or may be interrupted by an I/O interrupt.
 
 ```
-/* FCFS Scheduling Program in C */
+/* FCFS CPU Scheduling Program in C */
 #include <stdio.h>
 #define SIZE 10
+
 int main()
 {
     int at[SIZE],bt[SIZE],bt_copy[SIZE];
     int wt[SIZE],tat[SIZE],completion[SIZE];
-    int i,count,timecnt,n,beg=0;
+    int i,count=0,timecnt,n,beg=0;
     float avg=0,totalt=0;
  
-    printf("Enter the number of Processes: ");
+    printf("Enter the number of Processes(Maximum %d): ", SIZE-2);
     scanf("%d",&n);
-    count = n;
     //Input details of processes
     for(int i = 0; i < n; i++){
-        printf("Enter Details of Process %d \n", i + 1);
+        printf("Enter Details of Process %d \n", i);
         printf("Arrival Time: ");
         scanf("%d", &at[i]);
         printf("Burst Time: ");
@@ -39,27 +39,27 @@ int main()
     
     printf("\nGantt Chart\n");
     printf("time start to end => process number\n");
-    for(timecnt=0, i = 0; count!=0; ){
+    for(timecnt=0, i = 0; count!=n; ){
         // define the conditions
-        if(at[i]<=timecnt && bt_copy[i] > 0){
-            timecnt = timecnt + bt_copy[i];
-            bt_copy[i] = 0;
+        if(at[i]<=timecnt && bt[i] > 0){
+            timecnt = timecnt + bt[i];
+            bt[i] = 0;
             printf("%2d to %2d => p%d\n",beg,timecnt,i);
             beg = timecnt;
 
-            count--; //decrement the process no.
-            completion[i] = timecnt+1;
+            count++; //decrement the process no.
+            completion[i] = timecnt;
             tat[i] = completion[i] - at[i];
-            wt[i] = tat[i] - bt[i];
+            wt[i] = tat[i] - bt_copy[i];
             i=0;
         }
         else{
             i++;
         }
     }
-    printf("pid     burst  arrival  waiting    completion  turnaround");
+    printf("pid     burst  arrival  completion  turnaround  waiting");
     for(i=0;i<n;i++){
-        printf("\n P%d \t %2d \t %2d \t %2d \t\t %2d \t %2d",i,bt[i], at[i], wt[i],completion[i],tat[i]);
+        printf("\n P%d \t %2d \t %2d \t   %2d\t\t %2d \t  %2d",i,bt_copy[i], at[i], wt[i],completion[i],tat[i]);
         avg = avg + wt[i];
         totalt = totalt + tat[i];
     }
