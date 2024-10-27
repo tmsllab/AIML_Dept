@@ -28,7 +28,7 @@ int main()
     printf("Enter the number of Processes(Maximum %d): ", SIZE-2);
     scanf("%d",&n);
     //Input details of processes
-    for(int i = 0; i < n; i++){
+    for(i = 0; i < n; i++){
         printf("Enter Details of Process %d \n", i);
         printf("Arrival Time: ");
         scanf("%d", &at[i]);
@@ -57,9 +57,9 @@ int main()
             i++;
         }
     }
-    printf("pid     burst  arrival  completion  turnaround  waiting");
+    printf("pid   arrival  burst  completion  turnaround  waiting");
     for(i=0;i<n;i++){
-        printf("\n P%d \t %2d \t %2d \t   %2d\t\t %2d \t  %2d",i,bt_copy[i], at[i],completion[i],tat[i], wt[i]);
+        printf("\n P%d %6d %7d %9d %11d %9d",i, at[i],bt_copy[i],completion[i],tat[i], wt[i]);
         avg = avg + wt[i];
         totalt = totalt + tat[i];
     }
@@ -92,7 +92,7 @@ int main()
     scanf("%d",&n);
     count = n;
     //Input details of processes
-    for(int i = 0; i < n; i++){
+    for(i = 0; i < n; i++){
         printf("Enter Details of Process %d \n", i);
         printf("Arrival Time: ");
         scanf("%d", &at[i]);
