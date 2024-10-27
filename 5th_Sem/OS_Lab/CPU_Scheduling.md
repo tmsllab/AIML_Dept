@@ -288,73 +288,72 @@ preemptive.
 /* Round Robin Scheduling Program in C */
 #include <stdio.h>
 #define SIZE 10
+
 int main()
 {
     int at[SIZE],bt[SIZE],bt_copy[SIZE];
     int wt[SIZE],tat[SIZE],completion[SIZE];
-    int i,count,timecnt,n,beg=0,time_slot, flag = 0;
+    int i,count=0,timecnt,n,beg=0,time_slot, flag = 0;
     float avg=0,totalt=0;
  
-    printf("Enter the number of Processes: ");
+    printf("Enter the number of Processes(Maximum %d): ", SIZE-2);
     scanf("%d",&n);
-    count = n;
     //Input details of processes
     for(int i = 0; i < n; i++){
-        printf("Enter Details of Process %d \n", i + 1);
+        printf("Enter Details of Process %d \n", i);
         printf("Arrival Time: ");
         scanf("%d", &at[i]);
-        printf("Burst Time: ");
+        printf("Burst Time  : ");
         scanf("%d", &bt[i]);
         bt_copy[i] = bt[i];
     }
     //Input time slot
     printf("Enter Time Slot:");
     scanf("%d", &time_slot);
-    printf("\nGantt Chart\n");
+    printf("\nGantt Chart Round Robin Scheduling\n");
     printf("time start to end => process number\n");
-    for(timecnt=0, i = 0; count!=0; ){
+    for(timecnt=0, i = 0; count!=n; ){
         // define the conditions
-        if(at[i]<=timecnt && bt_copy[i] > 0){
-            if(bt_copy[i] <= time_slot){
-                timecnt = timecnt + bt_copy[i];
-                bt_copy[i] = 0;
+        if(at[i]<=timecnt && bt[i] > 0){
+            if(bt[i] <= time_slot){
+                timecnt = timecnt + bt[i];
+                bt[i] = 0;
                 flag=1;
             }
             else{
-                bt_copy[i] = bt_copy[i] - time_slot;
+                bt[i] = bt[i] - time_slot;
                 timecnt = timecnt + time_slot;
             }
             printf("%2d to %2d => p%d\n",beg,timecnt,i);
             beg = timecnt;
         }
-        if(bt_copy[i]==0 && flag==1){
-            count--; //decrement the process no.
-            completion[i] = timecnt+1;
+        if(bt[i]==0 && flag==1){
+            count++; //decrement the process no.
+            completion[i] = timecnt;
             tat[i] = completion[i] - at[i];
-            wt[i] = tat[i] - bt[i];
+            wt[i] = tat[i] - bt_copy[i];
             flag =0;
         }
         if(i == n-1){
             i = 0;
         }
         else{
-            i = i+1;
+            i++;
         }
     }
-    printf("pid     burst  arrival  waiting    completion  turnaround");
+    printf("pid   arrival  burst  completion  turnaround  waiting");
     for(i=0;i<n;i++){
-        printf("\n P%d \t %2d \t %2d \t %2d \t\t %2d \t %2d",i,bt[i], at[i], wt[i],completion[i],tat[i]);
+        printf("\n P%d %6d %7d %9d %11d %10d",i, at[i],bt_copy[i],completion[i],tat[i], wt[i]);
         avg = avg + wt[i];
         totalt = totalt + tat[i];
     }
-    printf("\n\nTotal waiting time    = %f",avg);
-    printf("\nTotal Turnaround time = %f", totalt);
-    printf("\nAverage Waiting Time  = %f", avg/n);
-    printf("\nAvg Turnaround Time   = %f", totalt/n);
+    printf("\n\nTotal waiting time    = %6.3f",avg);
+    printf("\nTotal Turnaround time = %6.3f", totalt);
+    printf("\nAverage Waiting Time  = %6.3f", avg/n);
+    printf("\nAvg Turnaround Time   = %6.3f", totalt/n);
     
     return 0;
 }
-
 ```
 OUTPUT :
 
