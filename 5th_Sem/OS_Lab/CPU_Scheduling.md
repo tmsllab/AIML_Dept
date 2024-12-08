@@ -25,7 +25,7 @@ The CPU scheduling algorithm First Come, First Served (FCFS), also known as Firs
 
 FCFS uses non-preemptive scheduling, which means that once a CPU has been assigned to a process, it stays assigned to that process until it is either terminated or may be interrupted by an I/O interrupt.
 
-```c
+```C
 /* FCFS CPU Scheduling Program in C */
 #include <stdio.h>
 #define SIZE 10
@@ -167,7 +167,7 @@ The CPU waits for the current process to finish, even if a higher-priority proce
 
 ## Priority (non-preemtive) CPU Scheduling
 
-```
+```C
 /* Priority (non-preemtive) CPU Scheduling Program in C */
 #include <stdio.h>
 #define SIZE 10
@@ -236,7 +236,7 @@ OUTPUT :
 
 ## Priority (preemtive) CPU Scheduling
 
-```
+```C
 /* Priority (preemtive) CPU Scheduling Program in C */
 #include <stdio.h>
 #define SIZE 10
@@ -315,7 +315,7 @@ The main challenge is setting the optimal time slice
 *    too small, and you get too many context switches; 
 *    too large, and it acts like FCFS.
 
-```
+```C
 /* Round Robin CPU Scheduling Program in C */
 #include <stdio.h>
 #define SIZE 10
@@ -402,8 +402,7 @@ Shortest Remaining Job First (SRJF) algorithm always selects the process with th
 3.	Minimizes Waiting Time: By always working on the shortest task left, it reduces the average waiting time for all processes.
 
 
-```
-
+```C
 /* SRJF CPU Scheduling Program in C */
 #include<stdio.h>
 #define SIZE 10
