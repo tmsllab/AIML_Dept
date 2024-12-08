@@ -25,7 +25,7 @@ The CPU scheduling algorithm First Come, First Served (FCFS), also known as Firs
 
 FCFS uses non-preemptive scheduling, which means that once a CPU has been assigned to a process, it stays assigned to that process until it is either terminated or may be interrupted by an I/O interrupt.
 
-```
+```c
 /* FCFS CPU Scheduling Program in C */
 #include <stdio.h>
 #define SIZE 10
@@ -91,7 +91,7 @@ OUTPUT :
 
 Shortest Job First (SJF) scheduling is a method where the process with the smallest execution time is selected next for execution. It's non-preemptive, meaning once a process starts, it runs to completion before another process is selected.
 
-```
+```C
 /* SJF CPU Scheduling Program in C */
 #include <stdio.h>
 #define SIZE 10
