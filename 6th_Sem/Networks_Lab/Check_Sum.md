@@ -79,3 +79,26 @@ int main()
     return 0;
 }
 ```
+
+```
+Sample Input
+1011
+1001
+
+Your Output
+Enter 1st string: Enter 2nd string: 
+In Sender side
+1011  1001
+sum string with carry: 1 0100
+sum string with carry: 0 0101
+1s Complement is: 1010
+In receiver side
+sum string with carry: 1 0100
+sum string with carry: 0 0101
+sum of 1st two frame= 0101
+sum string with carry: 0 1111
+sum of all 3 frames= 1111
+1s Complement is: 0000
+Result=0000
+
+```
